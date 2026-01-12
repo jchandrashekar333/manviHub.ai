@@ -20,6 +20,7 @@ const createAdmin = async () => {
             console.log('Admin user already exists. Updating password and permissions...');
             user.password = password; // Will be hashed by pre-save hook? typically yes if logic exists, but let's check model
             user.isAdmin = true;
+            user.role = 'admin';
             // We need to manually hash if the model update doesn't trigger pre-save hook on direct assignment sometimes?
             // Usually user.save() triggers pre-save.
             await user.save();
@@ -30,7 +31,8 @@ const createAdmin = async () => {
                 name,
                 email,
                 password,
-                isAdmin: true
+                isAdmin: true,
+                role: 'admin'
             });
             await user.save();
             console.log('Admin user created successfully.');
