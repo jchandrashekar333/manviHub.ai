@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Users, PenTool, AlertCircle, MessageSquare, TrendingUp, UserPlus } from 'lucide-react';
-import { api } from '../../lib/api';
+import api from '../../lib/api';
 
 export function AdminDashboard() {
     const [stats, setStats] = useState<any>(null);

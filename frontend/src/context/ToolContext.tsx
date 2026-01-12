@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { toolsApi } from '../lib/api';
+import { toolsApi, commentsApi } from '../lib/api';
 import type { Tool } from '../data/tools';
 
 interface ToolContextType {
@@ -55,9 +55,12 @@ export const ToolProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
     };
 
-    const addComment = async (id: string, text: string, username?: string) => {
+    const addComment = async (id: string, text: string) => {
         try {
-            const response = await toolsApi.addComment(id, text, username);
+            await commentsApi.create(id, text);
+            // Refresh tools to get latest comments count if needed, or just let UI update via separate comments fetch
+            // Ideally we should just invalidate comments query but for now let's just refresh current tool
+            const response = await toolsApi.getById(id);
             setTools(prev => prev.map(t => t.id === id ? response.data : t));
         } catch (err) {
             console.error('Error adding comment:', err);

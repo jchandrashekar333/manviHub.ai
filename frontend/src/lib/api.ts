@@ -48,6 +48,7 @@ export const toolsApi = {
     save: (id: string) => api.post(`/tools/${id}/save`),
     unsave: (id: string) => api.delete(`/tools/${id}/save`),
     like: (id: string) => api.post(`/tools/${id}/like`),
+    unlike: (id: string) => api.delete(`/tools/${id}/like`),
     checkStatus: (toolIds: string[]) => api.post('/tools/check-status', { toolIds }),
 };
 

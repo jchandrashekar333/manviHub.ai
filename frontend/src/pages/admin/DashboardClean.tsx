@@ -6,8 +6,6 @@ import {
     CheckCircle
 } from 'lucide-react';
 import {
-    LineChart,
-    Line,
     XAxis,
     YAxis,
     CartesianGrid,
@@ -17,7 +15,7 @@ import {
     Area
 } from 'recharts';
 import { useEffect, useState } from 'react';
-import api from '../../lib/api';
+// import api from '../../lib/api';
 import { useAuth } from '../../context/AuthContext';
 
 export function AdminDashboard() {
